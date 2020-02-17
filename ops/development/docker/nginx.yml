@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mikelovely-playground-nginx:
+    container_name: mikelovely-playground-nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8088:80"
+    volumes:
+      - ../../../:/opt/playground/app
+    environment:
+      - "APPLICATION_ENVIRONMENT=development"
+      - "ENVIRONMENT_ROLE=dev"
+      - "SERVICE_NAME=service-name"
+    external_links:
+      - mikelovely-playground-fpm
+
+networks:
+  default:
+    external:
+      name: environment_php_playground

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mikelovely-playground-db:
+    container_name: mikelovely-playground-db
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
+      - "MYSQL_ROOT_HOST=%"
+    ports:
+      - "33068:3306"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  default:
+    external:
+      name: environment_php_playground

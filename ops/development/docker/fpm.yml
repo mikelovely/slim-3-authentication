@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mikelovely-playground-fpm:
+    container_name: mikelovely-playground-fpm
+    build:
+      context: .
+      dockerfile: ./fpm/Dockerfile
+    volumes:
+      - ../../../:/opt/playground/app
+      - ~/.aws:/home/www-data/.aws
+    environment:
+      - APP_APPLICATION_ENVIRONMENT=development
+      - APP_ENVIRONMENT_ROLE=dev
+
+networks:
+  default:
+    external:
+      name: environment_php_playground

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mikelovely-playground-composer:
+    container_name: mikelovely-playground-composer
+    image: composer
+    command: install --ignore-platform-reqs
+    volumes:
+      - ../../../:/app
+
+networks:
+  default:
+    external:
+      name: environment_php_playground
